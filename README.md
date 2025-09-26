@@ -1,4 +1,13 @@
-# AI MCQ Generator - Project Overview
+# AI MCQ Generator 🎓🤖
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Python 3.13](https://img.shields.io/badge/python-3.13-blue.svg)](https://www.python.org/downloads/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.104.1-009688.svg)](https://fastapi.tiangolo.com/)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15-336791.svg)](https://www.postgresql.org/)
+
+> **🚀 Current Status: Phase 2 Complete - Core Backend Development**
+> 
+> ✅ Authentication System | ✅ Database Schema | ✅ API Endpoints | ✅ JWT Security
 
 ## 📋 Project Summary
 
@@ -91,6 +100,77 @@ Follow the phase-by-phase approach outlined in the development plan:
 - **Weeks 12-15**: Frontend development
 - **Weeks 16-18**: Testing, optimization, and deployment
 
+## 🎯 Current Status & Quick Start
+
+### ✅ What's Implemented (Phase 2 Complete)
+
+**🗄️ Database Infrastructure:**
+- Complete PostgreSQL schema with 10 tables
+- User authentication and session management
+- MCQ, Topics, Documents, and Learning analytics models
+- Database migrations with Alembic
+
+**🔐 Authentication System:**
+- JWT-based user authentication
+- Password hashing with bcrypt
+- Protected API endpoints
+- User registration and login
+
+**🌐 API Endpoints:**
+- FastAPI application with auto-documentation
+- Authentication endpoints (`/register`, `/login`, `/me`)
+- CORS configuration for frontend
+- Comprehensive error handling
+
+### 🚀 Quick Development Setup
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/partik-01/mcq-generator.git
+cd mcq-generator
+
+# 2. Set up Python environment
+python3.13 -m venv .venv
+source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+
+# 3. Install dependencies
+cd backend
+pip install -r requirements.txt
+
+# 4. Set up PostgreSQL (macOS with Homebrew)
+brew install postgresql@15
+brew services start postgresql@15
+createdb aimcq_generator_db
+
+# 5. Configure environment
+cp ../.env.example ../.env
+# Edit .env with your database URL and Gemini API key
+
+# 6. Run database migrations
+alembic upgrade head
+
+# 7. Start the development server
+uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+```
+
+### 📚 API Documentation
+Once the server is running, visit:
+- **Interactive Docs**: http://localhost:8000/api/v1/docs
+- **ReDoc**: http://localhost:8000/api/v1/redoc
+
+### 🧪 Test the Authentication
+```bash
+# Register a new user
+curl -X POST "http://localhost:8000/api/v1/auth/register" \
+     -H "Content-Type: application/json" \
+     -d '{"username": "testuser", "email": "test@example.com", "password": "password123", "first_name": "Test", "last_name": "User"}'
+
+# Login and get JWT token
+curl -X POST "http://localhost:8000/api/v1/auth/login" \
+     -H "Content-Type: application/json" \
+     -d '{"username": "testuser", "password": "password123"}'
+```
+
 ## 🔧 Technology Stack
 
 ### Backend
@@ -113,6 +193,32 @@ Follow the phase-by-phase approach outlined in the development plan:
 - **Testing**: Pytest with pytest-asyncio (backend) + Jest (frontend)
 - **Code Quality**: Black, Flake8, MyPy, ESLint, Prettier
 - **Development**: FastAPI auto-reload with PostgreSQL connection pooling
+
+## 🗺️ Development Roadmap
+
+### 🚧 Phase 3: AI Integration & PDF Processing (Next)
+- **PDF Upload & Processing**: Document upload endpoints with SmallDocling
+- **Gemini AI Services**: Content categorization and topic extraction  
+- **Document Management**: File storage, processing status, metadata
+- **Content Pipeline**: PDF → Text → AI Analysis → Topics/Subtopics
+
+### 🎯 Phase 4: MCQ Generation & Learning Engine
+- **AI-Powered MCQ Creation**: Generate questions from extracted content
+- **Adaptive Difficulty**: Dynamic question selection based on performance
+- **Learning Sessions**: Manage user practice sessions with progress tracking
+- **Performance Analytics**: Track accuracy, time, difficulty progression
+
+### 🎨 Phase 5: Frontend Development
+- **React Dashboard**: User interface for document management
+- **Learning Interface**: Interactive MCQ practice sessions
+- **Progress Visualizations**: Charts and analytics for performance tracking
+- **Responsive Design**: Mobile and desktop optimization
+
+### 🚀 Phase 6: Advanced Features & Deployment
+- **Spaced Repetition**: Flashcard system with optimal review scheduling
+- **Multi-format Support**: Additional document types beyond PDF
+- **Advanced Analytics**: ML-driven insights and recommendations
+- **Production Deployment**: Docker, CI/CD, cloud hosting
 
 ## 🎯 Success Criteria
 
