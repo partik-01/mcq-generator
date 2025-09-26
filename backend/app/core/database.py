@@ -76,13 +76,22 @@ async def init_db():
     
     This function creates all tables defined in the models.
     Should be called during application startup.
+    
+    Note: In Phase 1, we only test the connection since models are placeholders.
     """
+    from sqlalchemy import text
+    
     async with async_engine.begin() as conn:
-        # Import all models here to ensure they are registered
-        from app.models import user, document, topic, mcq  # noqa
+        # Phase 1: Just test the database connection
+        result = await conn.execute(text("SELECT 1 as test;"))
+        test_result = result.scalar()
         
-        # Create all tables
-        await conn.run_sync(Base.metadata.create_all)
+        if test_result == 1:
+            print("✅ Database connection test successful!")
+        
+        # Phase 2: Will uncomment this when models are implemented
+        # from app.models import user, document, topic, mcq  # noqa
+        # await conn.run_sync(Base.metadata.create_all)
 
 
 async def close_db():

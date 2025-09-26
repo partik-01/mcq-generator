@@ -41,14 +41,15 @@ class Settings(BaseSettings):
     
     # AI Configuration
     GEMINI_API_KEY: str = ""
-    GEMINI_MODEL: str = "gemini-pro"
+    GEMINI_PROJECT_NAME: str = ""
+    GEMINI_MODEL: str = "models/gemini-1.5-flash"
     GEMINI_TEMPERATURE: float = 0.7
     GEMINI_MAX_TOKENS: int = 2048
     
     # File Upload Configuration
     MAX_UPLOAD_SIZE_MB: int = 50
     UPLOAD_FOLDER: str = "uploads"
-    ALLOWED_EXTENSIONS: List[str] = ["pdf"]
+    ALLOWED_EXTENSIONS: str = "pdf"  # Simplified to string for now
     
     # CORS Configuration
     BACKEND_CORS_ORIGINS: List[str] = ["http://localhost:3000", "http://localhost:3001"]
@@ -70,7 +71,7 @@ class Settings(BaseSettings):
     LOG_FORMAT: str = "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
     
     class Config:
-        env_file = ".env"
+        env_file = "../.env"  # Look for .env in project root
         case_sensitive = True
 
 
