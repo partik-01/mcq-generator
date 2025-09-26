@@ -104,9 +104,9 @@ async def health_check():
     }
 
 
-# Include API routes (will be added in Phase 2)
-# from app.api.v1.api import api_router
-# app.include_router(api_router, prefix=settings.API_V1_STR)
+# Include API routes
+from app.api.v1 import api_router
+app.include_router(api_router, prefix=settings.API_V1_STR)
 
 
 if __name__ == "__main__":

@@ -8,14 +8,17 @@ Database models package initialization
 from .user import User  # noqa
 from .document import Document  # noqa  
 from .topic import Topic, Subtopic  # noqa
-from .mcq import MCQ, MCQUserResponse, UserLearningSession  # noqa
+from .mcq import MCQ, UserSession, UserResponse, Flashcard, FlashcardReview  # noqa
 
+# Export all models for easy importing
 __all__ = [
     "User",
     "Document", 
     "Topic",
     "Subtopic",
     "MCQ",
-    "MCQUserResponse",
-    "UserLearningSession"
+    "UserSession", 
+    "UserResponse",
+    "Flashcard",
+    "FlashcardReview"
 ]
